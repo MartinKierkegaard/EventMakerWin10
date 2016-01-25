@@ -5,12 +5,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:EventMakerWin10.ViewModel"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="EventMakerWin10.View.EventPage"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="DataTemplate1">
+            <Grid/>
+        </DataTemplate>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Accept" Label="appbarbutton"/>
+            <AppBarButton Icon="Cancel" Label="appbarbutton"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Page.DataContext>
         <ViewModel:EventViewModel/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="245" Margin="33,46,0,0" VerticalAlignment="Top" Width="241" Background="#FF1E7A47" ItemsSource="{Binding EventCatalogSingleton.events}" CanReorderItems="True" ItemTemplate="{StaticResource DataTemplate1}"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="70" Margin="32,319,0,0" VerticalAlignment="Top" Width="115"/>
+        <ListView x:Name="listView1" HorizontalAlignment="Left" Height="338" Margin="732,210,0,0" VerticalAlignment="Top" Width="100" CanDragItems="True"/>
+        <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="Add" Label="appbarbutton" Margin="252,361,0,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="EventMakerWin10.View.CreateEventPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </AppBarButton>
+    </Grid>
 </Page>
