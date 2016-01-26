@@ -31,7 +31,7 @@ namespace EventMakerWin10.ViewModel
             EventCatalogSingleton = EventCatalogSingleton.Instance;
            
             NewEvent = new Event();
-            //AddEventCommand = new RelayCommand(EventHandler.AddEvent);
+            AddEventCommand = new RelayCommand(EventHandler.AddEvent);
 
             //Action<Event> testAction = TestAddEvent;
 

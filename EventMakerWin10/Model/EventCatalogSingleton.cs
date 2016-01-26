@@ -9,13 +9,13 @@ namespace EventMakerWin10.Model
 {
     public class EventCatalogSingleton
     {
-        private static EventCatalogSingleton _instance = new EventCatalogSingleton();
-       public ObservableCollection<Event> events { get;  set; }
+        private static EventCatalogSingleton _instance;//= new EventCatalogSingleton();
+       public ObservableCollection<Event> Events { get;  set; }
 
        public static EventCatalogSingleton Instance
         {
-            //get { return _instance ?? (_instance = new EventCatalogSingleton()); }
-            get { return _instance; }
+            get { return _instance ?? (_instance = new EventCatalogSingleton()); }
+            //get { return _instance; }
         }
 
         /// <summary>
@@ -24,12 +24,12 @@ namespace EventMakerWin10.Model
         /// <param name="nytEvent"></param>
         public void AddEvent(Event nytEvent)
         {
-            Instance.AddEvent(nytEvent);
+            Events.Add(nytEvent);
         }
 
         private EventCatalogSingleton()
         {
-            events = new ObservableCollection<Event>();
+            Events = new ObservableCollection<Event>();
 
             addEventData();
 
@@ -37,7 +37,7 @@ namespace EventMakerWin10.Model
 
         private void addEventData()
         {
-            events.Add(new Event
+            Events.Add(new Event
             {
                 Id = 1,
                 Description = "Pitching 2end semester Projects",
@@ -46,7 +46,7 @@ namespace EventMakerWin10.Model
                 Name = "De studerende fremlægger deres eksamensprojekt"
             });
 
-            events.Add(new Event
+            Events.Add(new Event
             {
                 Id = 2,
                 Description = "Eksamen",
